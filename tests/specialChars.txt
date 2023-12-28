@@ -1,6 +1,6 @@
 input: (\\++\\|)+\\**|\\\\+\\(+\\)
 
-output:
+output (after Thompson's construction):
 Node Num: 0:
 Is Accept: 0
 '' transitions to node #1
@@ -65,4 +65,41 @@ Is Accept: 0
 '' transitions to node #15
 
 Node Num: 15:
+Is Accept: 1
+
+
+
+
+
+
+
+
+
+output (after episilon elimination):
+Node Num: 0:
+Is Accept: 0
+'+' transitions to node #1
+'\' transitions to node #4
+
+Node Num: 1:
+Is Accept: 0
+'|' transitions to node #2
+
+Node Num: 2:
+Is Accept: 1
+'*' transitions to node #3
+
+Node Num: 3:
+Is Accept: 1
+'*' transitions to node #3
+
+Node Num: 4:
+Is Accept: 0
+'(' transitions to node #5
+
+Node Num: 5:
+Is Accept: 0
+')' transitions to node #6
+
+Node Num: 6:
 Is Accept: 1

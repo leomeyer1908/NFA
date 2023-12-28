@@ -13,43 +13,81 @@ void addTransitionNFANode(NFANode* nfaNode, char transitionChar, NFANode* destin
 	pushBackList(possibleDestinations, (void*) destinationNode);
 }
 
-int getIndexNFANode(NFA* nfa, NFANode* nfaNode) {
-    for (int i = 0; i < nfa->nodeNum; i++) {
-        if (nfa->NFANodes[i] == nfaNode) {
-            return i;
-        } 
-    }
-    return -1;
+void removeUnreachableNFANodes(NFA* nfa) {
+	HashSet visitedNodes;
+	initHashSet(&visitedNodes, nfa->nodeNum);
+
+	Stack nodesToVisit;
+	initStack(&nodesToVisit);
+	pushStack(&nodesToVisit, (void*) nfa->startState);
+
+	while (topStack(&nodesToVisit) != NULL) {
+		NFANode* currentNFANode = (NFANode*) popStack(&nodesToVisit);
+		if (!containsHashSet(&visitedNodes, (size_t) currentNFANode)) {
+			insertHashSet(&visitedNodes, (size_t) currentNFANode);
+			for (DoublyNode* node = currentNFANode->transitions->keyValuePairs.head; node != NULL; node = node->next) {
+				char currentTransitionChar = (char) ((KeyValuePair*) node->value)->key;
+				if (currentTransitionChar == '\0') {
+					continue;
+				}
+				LinkedList* destinationNodes = (LinkedList*) ((KeyValuePair*) node->value)->value;
+				for (DoublyNode* node = destinationNodes->head; node != NULL; node = node->next) {
+					if (!containsHashSet(&visitedNodes, (size_t) node->value)) {
+						pushStack(&nodesToVisit, (void*) node->value);
+					}
+				}
+			}
+		}
+	}
+
+	size_t newNodeNum = visitedNodes.size;
+	NFANode** newNFANodes = (NFANode**) malloc(newNodeNum*sizeof(NFANode*));
+	size_t nodeCount = 0;
+	for (size_t i = 0; i < nfa->nodeNum; i++) {
+		if (containsHashSet(&visitedNodes, (size_t) nfa->NFANodes[i])) {
+			newNFANodes[nodeCount] = nfa->NFANodes[i];
+			nodeCount++;
+		}
+		else {
+			destroyNFANode(nfa->NFANodes[i]);
+			free(nfa->NFANodes[i]);
+		}
+	}
+	free(nfa->NFANodes);
+	nfa->NFANodes = newNFANodes;
+	nfa->nodeNum = newNodeNum;
+
 }
 
 void printNFA(NFA* nfa) {
-	for (int i = 0; i < nfa->nodeNum; i++) {
-        printf("Node Num: %d:\n", i);
+	HashMap nodeToIndexMap;
+	initHashMap(&nodeToIndexMap, nfa->nodeNum);
+	for (size_t i = 0; i < nfa->nodeNum; i++) {
+		insertHashMap(&nodeToIndexMap, (size_t) nfa->NFANodes[i], (void*) i);
+	}
+	for (size_t i = 0; i < nfa->nodeNum; i++) {
+        printf("Node Num: %zu:\n", i);
         printf("Is Accept: %d\n", nfa->NFANodes[i]->is_accept);
-		for (int j = 0; j < nfa->NFANodes[i]->transitions->capacity; j++) {
-			for (Node* node = nfa->NFANodes[i]->transitions->array[j].head; node != NULL; node = node->next) {
-				char currentTransitionChar = (char) ((KeyValuePair*) node->value)->key;
-                LinkedList* transitionList = (LinkedList*) ((KeyValuePair*) node->value)->value;
-                if (transitionList != NULL) {
-                    for (Node* node = transitionList->head; node != NULL; node = node->next) {
-                        NFANode* nextNode = (NFANode*) node->value;
-                        printf("'%c' transitions to node #%d\n", currentTransitionChar, getIndexNFANode(nfa, nextNode));
-                    }
-                }
+		
+		for (DoublyNode* node = nfa->NFANodes[i]->transitions->keyValuePairs.head; node != NULL; node = node->next) {
+			char currentTransitionChar = (char) ((KeyValuePair*) node->value)->key;
+			LinkedList* transitionList = (LinkedList*) ((KeyValuePair*) node->value)->value;
+
+			for (DoublyNode* node = transitionList->head; node != NULL; node = node->next) {
+				NFANode* nextNode = (NFANode*) node->value;
+				size_t nextNodeIndex = (size_t) getHashMap(&nodeToIndexMap, (size_t) nextNode);
+				printf("'%c' transitions to node #%zu\n", currentTransitionChar, nextNodeIndex);
 			}
 		}
         printf("\n");
 	}
+	destroyHashMap(&nodeToIndexMap);
 }
 
 void destroyNFANode(NFANode* nfaNode) {
-	for (size_t i = 0; i < nfaNode->transitions->capacity; i++) {
-		for (Node* node = nfaNode->transitions->array[i].head; node != NULL; node = node->next) {
-			LinkedList* transitionList = (LinkedList*) ((KeyValuePair*) node->value)->value;
-			if (transitionList != NULL) {
-				free(transitionList);
-			}
-		}
+	for (DoublyNode* node = nfaNode->transitions->keyValuePairs.head; node != NULL; node = node->next) {
+		LinkedList* transitionList = (LinkedList*) ((KeyValuePair*) node->value)->value;
+		free(transitionList);
 	}
 	destroyHashMap(nfaNode->transitions);
 	free(nfaNode->transitions);
