@@ -2,14 +2,15 @@
 
 int main() {
     NFA nfa;
-    char regex[] = "a+a";
+    char regex[] = "a|b";
     int errorResult = createNFAFromRegex(regex, &nfa);
     if (errorResult == -1) {
         printf("Invalid RegEx\n");
+        destroyNFA(&nfa);
+        return 1;
     } 
-    else {
-        printNFA(&nfa);
-    }
+    eliminateEpisilonNFA(&nfa);
+    printNFA(&nfa);
     destroyNFA(&nfa);
     return 0;
 }
