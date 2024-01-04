@@ -8,21 +8,21 @@ from one of the destination node to its corresponding entry in the table. The Ha
 used to avoid duplicates.
 */
 static void createTransitionTable(NFA* nfa, HashMap* transitionTable) {
-	initHashMap(transitionTable, nfa->nodeNum);
+	initHashMap(transitionTable, nfa->nodeNum, NULL, NULL);
 	for (size_t i = 0; i < nfa->nodeNum; i++) {
 		HashMap* currentTransitions = (HashMap*) malloc(sizeof(HashMap));
-		initHashMap(currentTransitions, nfa->NFANodes[i]->transitions->capacity);
+		initHashMap(currentTransitions, nfa->NFANodes[i]->transitions->capacity, NULL, NULL);
 		for (DoublyNode* node = nfa->NFANodes[i]->transitions->keyValuePairs.head; node != NULL; node = node->next) {
-			char currentTransitionChar = (char) ((KeyValuePair*) node->value)->key;
+			char currentTransitionChar = (char) (uintptr_t) ((KeyValuePair*) node->value)->key;
 			LinkedList* transitionList = (LinkedList*) ((KeyValuePair*) node->value)->value;
 			if (transitionList != NULL) {
 				HashSet* transitionSet = (HashSet*) malloc(sizeof(HashSet));
-				initHashSet(transitionSet, 2);
+				initHashSet(transitionSet, 2, NULL, NULL);
 				getSetFromList(transitionList, transitionSet);
-				insertHashMap(currentTransitions, (size_t) currentTransitionChar, (void*) transitionSet);
+				insertHashMap(currentTransitions, (void*) (uintptr_t) currentTransitionChar, (void*) transitionSet);
 			}
 		}
-		insertHashMap(transitionTable, (size_t) nfa->NFANodes[i], currentTransitions);
+		insertHashMap(transitionTable, (void*) nfa->NFANodes[i], currentTransitions);
 	}
 }
 
@@ -44,34 +44,34 @@ static void destroyTransitionTable(HashMap* transitionTable) {
 /*Updates the transition table by adding non-episilon transitions from the destination
 node to the current node.*/
 static void addDestinationNodeTransitions(NFANode* destinationNode, NFANode* currentNFANode, HashMap* transitionTable, HashSet* nfaNodesReferenced) {
-	HashMap* currentNodeUniqueTransitions = (HashMap*) getHashMap(transitionTable, (size_t) currentNFANode);
+	HashMap* currentNodeUniqueTransitions = (HashMap*) getHashMap(transitionTable, (void*) currentNFANode);
 	for (DoublyNode* node = destinationNode->transitions->keyValuePairs.head; node != NULL; node = node->next) {
-		char currentTransitionChar = (char) ((KeyValuePair*) node->value)->key;
+		char currentTransitionChar = (char) (uintptr_t) ((KeyValuePair*) node->value)->key;
 
-		HashSet* currentUniqueDestinations = (HashSet*) getHashMap(currentNodeUniqueTransitions, (size_t) currentTransitionChar);
+		HashSet* currentUniqueDestinations = (HashSet*) getHashMap(currentNodeUniqueTransitions, (void*) (uintptr_t) currentTransitionChar);
 		if (currentUniqueDestinations == NULL) {
 			currentUniqueDestinations = (HashSet*) malloc(sizeof(HashSet));
-			initHashSet(currentUniqueDestinations, 2);
-			insertHashMap(currentNodeUniqueTransitions, (size_t) currentTransitionChar, (void*) currentUniqueDestinations);
+			initHashSet(currentUniqueDestinations, 2, NULL, NULL);
+			insertHashMap(currentNodeUniqueTransitions, (void*) (uintptr_t) currentTransitionChar, (void*) currentUniqueDestinations);
 		}
 
-		LinkedList* currentDestinationNodes = (LinkedList*) getHashMap(currentNFANode->transitions, (size_t) currentTransitionChar);
+		LinkedList* currentDestinationNodes = (LinkedList*) getHashMap(currentNFANode->transitions, (void*) (uintptr_t) currentTransitionChar);
 		if (currentDestinationNodes == NULL) {
 			currentDestinationNodes = (LinkedList*) malloc(sizeof(LinkedList));
 			initList(currentDestinationNodes);
-			insertHashMap(currentNFANode->transitions, (size_t) currentTransitionChar, (void*) currentDestinationNodes);
+			insertHashMap(currentNFANode->transitions, (void*) (uintptr_t) currentTransitionChar, (void*) currentDestinationNodes);
 		}
 
 
 
 		LinkedList* destinationDestinationNodes = (LinkedList*) ((KeyValuePair*) node->value)->value;
 		for (DoublyNode* node = destinationDestinationNodes->head; node != NULL; node = node->next) {
-			if (!containsHashSet(currentUniqueDestinations, (size_t) node->value)) {
-				insertHashSet(currentUniqueDestinations, (size_t) node->value);
-				pushBackList(currentDestinationNodes, (void*) node->value);
+			if (!containsHashSet(currentUniqueDestinations, node->value)) {
+				insertHashSet(currentUniqueDestinations, node->value);
+				pushBackList(currentDestinationNodes, node->value);
 			}
 			if (currentTransitionChar != '\0') {
-				insertHashSet(nfaNodesReferenced, (size_t) node->value);
+				insertHashSet(nfaNodesReferenced, node->value);
 			}
 		}
 	}
@@ -83,11 +83,11 @@ static void eliminateEpisilonNFANode(NFANode* currentNFANode, HashSet* nfaNodesV
 	copyHashSet(nfaNodesVisited, &newNFANodesVisited);
 	nfaNodesVisited = &newNFANodesVisited;
 
-	insertHashSet(nfaNodesVisited, (size_t) currentNFANode);
-	LinkedList* episilonTransitions = (LinkedList*) getHashMap(currentNFANode->transitions, (size_t) '\0');
+	insertHashSet(nfaNodesVisited, (void*) currentNFANode);
+	LinkedList* episilonTransitions = (LinkedList*) getHashMap(currentNFANode->transitions, (void*) (uintptr_t) '\0');
 
-	HashMap* currentNodeUniqueTransitions = (HashMap*) getHashMap(transitionTable, (size_t) currentNFANode);
-	HashSet* uniqueEpisilonTransitions = (HashSet*) getHashMap(currentNodeUniqueTransitions, (size_t) '\0');
+	HashMap* currentNodeUniqueTransitions = (HashMap*) getHashMap(transitionTable, (void*) currentNFANode);
+	HashSet* uniqueEpisilonTransitions = (HashSet*) getHashMap(currentNodeUniqueTransitions, (void*) (uintptr_t) '\0');
 	if (episilonTransitions != NULL) {
 		DoublyNode* node = episilonTransitions->head;
 		while (node != NULL) {
@@ -95,16 +95,16 @@ static void eliminateEpisilonNFANode(NFANode* currentNFANode, HashSet* nfaNodesV
 			NFANode* destinationNode = (NFANode*) node->value;
 			if (destinationNode == currentNFANode) {
 				removeNodeFromList(episilonTransitions, node);
-				removeElementHashSet(uniqueEpisilonTransitions, (size_t) node->value);
+				removeElementHashSet(uniqueEpisilonTransitions, node->value);
 			}
-			else if (!containsHashSet(nfaNodesVisited, (size_t) destinationNode)) {
+			else if (!containsHashSet(nfaNodesVisited, (void*) destinationNode)) {
 				eliminateEpisilonNFANode(destinationNode, nfaNodesVisited, nfaNodesReferenced, transitionTable);
 				addDestinationNodeTransitions(destinationNode, currentNFANode, transitionTable, nfaNodesReferenced); 
 				if (destinationNode->is_accept) {
 					currentNFANode->is_accept = 1;
 				}
-				removeNodeFromList(episilonTransitions, node);
-				removeElementHashSet(uniqueEpisilonTransitions, (size_t) node->value);
+				removeNodeFromList(episilonTransitions, (void*) node);
+				removeElementHashSet(uniqueEpisilonTransitions, node->value);
 			}		
 			node = nextNode;
 		}
@@ -123,12 +123,12 @@ void eliminateEpisilonNFA(NFA* nfa) {
 	createTransitionTable(nfa, &transitionTable);
 
 	HashSet nfaNodesReferenced; //Nodes referenced through non-epision transitions
-	initHashSet(&nfaNodesReferenced, 2);
-	insertHashSet(&nfaNodesReferenced, (size_t) nfa->startState);
+	initHashSet(&nfaNodesReferenced, 2, NULL, NULL);
+	insertHashSet(&nfaNodesReferenced, (void*) nfa->startState);
 
 	for (size_t i = 0; i < nfa->nodeNum; i++) {
 		HashSet nfaNodesVisited; //Nodes visited through episilon transitions
-		initHashSet(&nfaNodesVisited, 2);
+		initHashSet(&nfaNodesVisited, 2, NULL, NULL);
 
 		eliminateEpisilonNFANode(nfa->NFANodes[i], &nfaNodesVisited, &nfaNodesReferenced, &transitionTable);
 
@@ -139,10 +139,10 @@ void eliminateEpisilonNFA(NFA* nfa) {
 	removeUnreachableNFANodes(nfa);
 
 	for (size_t i = 0; i < nfa->nodeNum; i++) {
-		if (containsHashMap(nfa->NFANodes[i]->transitions, (size_t) '\0')) {
-			LinkedList* transitionList = (LinkedList*) getHashMap(nfa->NFANodes[i]->transitions, '\0');
+		if (containsHashMap(nfa->NFANodes[i]->transitions, (void*) (uintptr_t) '\0')) {
+			LinkedList* transitionList = (LinkedList*) getHashMap(nfa->NFANodes[i]->transitions, (void*) (uintptr_t) '\0');
 			free(transitionList);
-			removeElementHashMap(nfa->NFANodes[i]->transitions, (size_t) '\0');
+			removeElementHashMap(nfa->NFANodes[i]->transitions, (void*) (uintptr_t) '\0');
 		}
 	}
 

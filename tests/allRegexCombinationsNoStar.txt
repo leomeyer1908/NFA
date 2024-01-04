@@ -377,3 +377,99 @@ Is Accept: 0
 
 Node Num: 23:
 Is Accept: 1
+
+Output (After powerset construction)
+Node Num: 0:
+Is Accept: 0
+'a' transitions to node #1
+'b' transitions to node #2
+'c' transitions to node #3
+'d' transitions to node #4
+'h' transitions to node #5
+'j' transitions to node #6
+'k' transitions to node #7
+'p' transitions to node #8
+'q' transitions to node #9
+'s' transitions to node #10
+'w' transitions to node #11
+
+Node Num: 1:
+Is Accept: 1
+
+Node Num: 2:
+Is Accept: 1
+
+Node Num: 3:
+Is Accept: 1
+
+Node Num: 4:
+Is Accept: 0
+'g' transitions to node #12
+
+Node Num: 5:
+Is Accept: 0
+'i' transitions to node #13
+
+Node Num: 6:
+Is Accept: 1
+
+Node Num: 7:
+Is Accept: 0
+'m' transitions to node #14
+
+Node Num: 8:
+Is Accept: 1
+
+Node Num: 9:
+Is Accept: 0
+'r' transitions to node #15
+
+Node Num: 10:
+Is Accept: 0
+'t' transitions to node #16
+
+Node Num: 11:
+Is Accept: 0
+'x' transitions to node #17
+
+Node Num: 12:
+Is Accept: 1
+
+Node Num: 13:
+Is Accept: 1
+
+Node Num: 14:
+Is Accept: 0
+'n' transitions to node #18
+
+Node Num: 15:
+Is Accept: 1
+
+Node Num: 16:
+Is Accept: 0
+'u' transitions to node #19
+
+Node Num: 17:
+Is Accept: 0
+'y' transitions to node #20
+
+Node Num: 18:
+Is Accept: 0
+'o' transitions to node #21
+
+Node Num: 19:
+Is Accept: 0
+'v' transitions to node #22
+
+Node Num: 20:
+Is Accept: 0
+'z' transitions to node #23
+
+Node Num: 21:
+Is Accept: 1
+
+Node Num: 22:
+Is Accept: 1
+
+Node Num: 23:
+Is Accept: 1
