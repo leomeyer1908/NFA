@@ -157,3 +157,53 @@ Is Accept: 0
 
 Node Num: 8:
 Is Accept: 1
+
+
+
+output (after powerset construction)
+Node Num: 0:
+Is Accept: 0
+'a' transitions to node #1
+
+Node Num: 1:
+Is Accept: 0
+'f' transitions to node #2
+'b' transitions to node #3
+'h' transitions to node #4
+
+Node Num: 2:
+Is Accept: 0
+'h' transitions to node #4
+'f' transitions to node #2
+'b' transitions to node #3
+
+Node Num: 3:
+Is Accept: 0
+'c' transitions to node #5
+'d' transitions to node #6
+'e' transitions to node #7
+
+Node Num: 4:
+Is Accept: 1
+
+Node Num: 5:
+Is Accept: 0
+'e' transitions to node #7
+'c' transitions to node #5
+'d' transitions to node #6
+
+Node Num: 6:
+Is Accept: 0
+'e' transitions to node #7
+'c' transitions to node #5
+'d' transitions to node #6
+
+Node Num: 7:
+Is Accept: 0
+'g' transitions to node #8
+
+Node Num: 8:
+Is Accept: 0
+'h' transitions to node #4
+'f' transitions to node #2
+'b' transitions to node #3

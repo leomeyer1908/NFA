@@ -2,7 +2,9 @@
 #define NFA_H
 
 #include <stdlib.h>
+#include <stdint.h>
 #include <stdio.h>
+#include <stdarg.h>
 #include "DataStructures/Stack.h"
 #include "DataStructures/HashMap.h"
 #include "DataStructures/LinkedList.h"
@@ -35,6 +37,8 @@ int detectErrorRegEx(const char* regex);
 
 void eliminateEpisilonNFA(NFA* nfa);
 
+void initNFANode(NFANode* nfaNode);
+
 void addTransitionNFANode(NFANode* nfaNode, char transitionChar, NFANode* destinationNode);
 
 /*Uses a DFS traversal to find all reachable nodes and remove the ones not found*/
@@ -42,7 +46,7 @@ void removeUnreachableNFANodes(NFA* nfa);
 
 void printNFA(NFA* nfa);
 
-int getIndexNFANode(NFA* nfa, NFANode* nfaNode);
+void createDFAFromNFA(const NFA* nfa, NFA* dfa);
 
 void destroyNFANode(NFANode* nfaNode);
 

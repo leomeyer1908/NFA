@@ -1,6 +1,6 @@
-input: (a)*|((a)|a)|(a|(a))+((a*|a))|(a|a*)*|(a|a)*+(a|a)+(a|a)*|(a+a)|(a+a)+(a|a)*+(a+a)|(a+a*)*|(a*+a)*+((a+a))+(a+(a))*+((a)+a)*|(a)
+Input: (a)*|((b)|b)|(a|(b))+((b*|b))|(a|a*)*|(b|a)*+(a|b)+(b|b)*|(a+b)|(b+b)+(b|a)*+(a+a)|(b+a*)*|(a*+b)*+((b+a))+(b+(a))*+((b)+a)*|(b)
 
-output (after Thompson's construction):
+Output (after Thompson's construction)
 Node Num: 0:
 Is Accept: 0
 '' transitions to node #1
@@ -36,7 +36,7 @@ Is Accept: 0
 
 Node Num: 7:
 Is Accept: 0
-'a' transitions to node #8
+'b' transitions to node #8
 
 Node Num: 8:
 Is Accept: 0
@@ -44,7 +44,7 @@ Is Accept: 0
 
 Node Num: 9:
 Is Accept: 0
-'a' transitions to node #10
+'b' transitions to node #10
 
 Node Num: 10:
 Is Accept: 0
@@ -83,7 +83,7 @@ Is Accept: 0
 
 Node Num: 18:
 Is Accept: 0
-'a' transitions to node #19
+'b' transitions to node #19
 
 Node Num: 19:
 Is Accept: 0
@@ -105,7 +105,7 @@ Is Accept: 0
 
 Node Num: 23:
 Is Accept: 0
-'a' transitions to node #24
+'b' transitions to node #24
 
 Node Num: 24:
 Is Accept: 0
@@ -118,7 +118,7 @@ Is Accept: 0
 
 Node Num: 26:
 Is Accept: 0
-'a' transitions to node #27
+'b' transitions to node #27
 
 Node Num: 27:
 Is Accept: 0
@@ -199,7 +199,7 @@ Is Accept: 0
 
 Node Num: 44:
 Is Accept: 0
-'a' transitions to node #45
+'b' transitions to node #45
 
 Node Num: 45:
 Is Accept: 0
@@ -237,7 +237,7 @@ Is Accept: 0
 
 Node Num: 53:
 Is Accept: 0
-'a' transitions to node #54
+'b' transitions to node #54
 
 Node Num: 54:
 Is Accept: 0
@@ -259,7 +259,7 @@ Is Accept: 0
 
 Node Num: 58:
 Is Accept: 0
-'a' transitions to node #59
+'b' transitions to node #59
 
 Node Num: 59:
 Is Accept: 0
@@ -267,7 +267,7 @@ Is Accept: 0
 
 Node Num: 60:
 Is Accept: 0
-'a' transitions to node #61
+'b' transitions to node #61
 
 Node Num: 61:
 Is Accept: 0
@@ -292,7 +292,7 @@ Is Accept: 0
 
 Node Num: 66:
 Is Accept: 0
-'a' transitions to node #67
+'b' transitions to node #67
 
 Node Num: 67:
 Is Accept: 0
@@ -314,7 +314,7 @@ Is Accept: 0
 
 Node Num: 71:
 Is Accept: 0
-'a' transitions to node #72
+'b' transitions to node #72
 
 Node Num: 72:
 Is Accept: 0
@@ -322,7 +322,7 @@ Is Accept: 0
 
 Node Num: 73:
 Is Accept: 0
-'a' transitions to node #74
+'b' transitions to node #74
 
 Node Num: 74:
 Is Accept: 0
@@ -340,7 +340,7 @@ Is Accept: 0
 
 Node Num: 77:
 Is Accept: 0
-'a' transitions to node #78
+'b' transitions to node #78
 
 Node Num: 78:
 Is Accept: 0
@@ -386,7 +386,7 @@ Is Accept: 0
 
 Node Num: 88:
 Is Accept: 0
-'a' transitions to node #89
+'b' transitions to node #89
 
 Node Num: 89:
 Is Accept: 0
@@ -449,7 +449,7 @@ Is Accept: 0
 
 Node Num: 102:
 Is Accept: 0
-'a' transitions to node #103
+'b' transitions to node #103
 
 Node Num: 103:
 Is Accept: 0
@@ -462,7 +462,7 @@ Is Accept: 0
 
 Node Num: 105:
 Is Accept: 0
-'a' transitions to node #106
+'b' transitions to node #106
 
 Node Num: 106:
 Is Accept: 0
@@ -483,7 +483,7 @@ Is Accept: 0
 
 Node Num: 110:
 Is Accept: 0
-'a' transitions to node #111
+'b' transitions to node #111
 
 Node Num: 111:
 Is Accept: 0
@@ -509,7 +509,7 @@ Is Accept: 0
 
 Node Num: 116:
 Is Accept: 0
-'a' transitions to node #117
+'b' transitions to node #117
 
 Node Num: 117:
 Is Accept: 0
@@ -530,7 +530,7 @@ Is Accept: 0
 
 Node Num: 121:
 Is Accept: 0
-'a' transitions to node #122
+'b' transitions to node #122
 
 Node Num: 122:
 Is Accept: 0
@@ -560,30 +560,27 @@ Is Accept: 1
 
 
 
-
-
-
-output (after episilon elimination):
+Output (after episilon elimination)
 Node Num: 0:
 Is Accept: 1
 'a' transitions to node #1
-'a' transitions to node #2
-'a' transitions to node #3
 'a' transitions to node #4
-'a' transitions to node #5
 'a' transitions to node #8
 'a' transitions to node #9
-'a' transitions to node #10
 'a' transitions to node #11
 'a' transitions to node #12
-'a' transitions to node #13
 'a' transitions to node #16
-'a' transitions to node #18
-'a' transitions to node #24
 'a' transitions to node #26
-'a' transitions to node #27
-'a' transitions to node #28
-'a' transitions to node #34
+'b' transitions to node #2
+'b' transitions to node #3
+'b' transitions to node #5
+'b' transitions to node #10
+'b' transitions to node #13
+'b' transitions to node #18
+'b' transitions to node #24
+'b' transitions to node #27
+'b' transitions to node #28
+'b' transitions to node #34
 
 Node Num: 1:
 Is Accept: 1
@@ -597,17 +594,17 @@ Is Accept: 1
 
 Node Num: 4:
 Is Accept: 1
-'a' transitions to node #6
-'a' transitions to node #7
+'b' transitions to node #6
+'b' transitions to node #7
 
 Node Num: 5:
 Is Accept: 1
-'a' transitions to node #6
-'a' transitions to node #7
+'b' transitions to node #6
+'b' transitions to node #7
 
 Node Num: 6:
 Is Accept: 1
-'a' transitions to node #6
+'b' transitions to node #6
 
 Node Num: 7:
 Is Accept: 1
@@ -625,65 +622,65 @@ Is Accept: 1
 Node Num: 10:
 Is Accept: 0
 'a' transitions to node #12
-'a' transitions to node #13
-'a' transitions to node #10
 'a' transitions to node #11
+'b' transitions to node #13
+'b' transitions to node #10
 
 Node Num: 11:
 Is Accept: 0
 'a' transitions to node #12
-'a' transitions to node #13
-'a' transitions to node #10
 'a' transitions to node #11
+'b' transitions to node #13
+'b' transitions to node #10
 
 Node Num: 12:
 Is Accept: 1
-'a' transitions to node #14
-'a' transitions to node #15
+'b' transitions to node #14
+'b' transitions to node #15
 
 Node Num: 13:
 Is Accept: 1
-'a' transitions to node #14
-'a' transitions to node #15
+'b' transitions to node #14
+'b' transitions to node #15
 
 Node Num: 14:
 Is Accept: 1
-'a' transitions to node #14
-'a' transitions to node #15
+'b' transitions to node #14
+'b' transitions to node #15
 
 Node Num: 15:
 Is Accept: 1
-'a' transitions to node #14
-'a' transitions to node #15
+'b' transitions to node #14
+'b' transitions to node #15
 
 Node Num: 16:
 Is Accept: 0
-'a' transitions to node #17
+'b' transitions to node #17
 
 Node Num: 17:
 Is Accept: 1
 
 Node Num: 18:
 Is Accept: 0
-'a' transitions to node #19
+'b' transitions to node #19
 
 Node Num: 19:
 Is Accept: 0
-'a' transitions to node #20
+'b' transitions to node #20
 'a' transitions to node #21
 'a' transitions to node #22
 
 Node Num: 20:
 Is Accept: 0
 'a' transitions to node #22
-'a' transitions to node #20
 'a' transitions to node #21
+'b' transitions to node #20
 
 Node Num: 21:
 Is Accept: 0
 'a' transitions to node #22
-'a' transitions to node #20
 'a' transitions to node #21
+'b' transitions to node #20
 
 Node Num: 22:
 Is Accept: 0
@@ -695,23 +692,23 @@ Is Accept: 1
 Node Num: 24:
 Is Accept: 1
 'a' transitions to node #25
-'a' transitions to node #24
+'b' transitions to node #24
 
 Node Num: 25:
 Is Accept: 1
-'a' transitions to node #24
+'b' transitions to node #24
 'a' transitions to node #25
 
 Node Num: 26:
 Is Accept: 0
-'a' transitions to node #27
+'b' transitions to node #27
 'a' transitions to node #26
 
 Node Num: 27:
 Is Accept: 0
-'a' transitions to node #28
+'b' transitions to node #28
+'b' transitions to node #27
 'a' transitions to node #26
-'a' transitions to node #27
 
 Node Num: 28:
 Is Accept: 0
@@ -719,8 +716,8 @@ Is Accept: 0
 
 Node Num: 29:
 Is Accept: 1
-'a' transitions to node #30
-'a' transitions to node #32
+'b' transitions to node #30
+'b' transitions to node #32
 
 Node Num: 30:
 Is Accept: 0
@@ -728,8 +725,8 @@ Is Accept: 0
 
 Node Num: 31:
 Is Accept: 1
-'a' transitions to node #32
-'a' transitions to node #30
+'b' transitions to node #32
+'b' transitions to node #30
 
 Node Num: 32:
 Is Accept: 0
@@ -737,7 +734,7 @@ Is Accept: 0
 
 Node Num: 33:
 Is Accept: 1
-'a' transitions to node #32
+'b' transitions to node #32
 
 Node Num: 34:
 Is Accept: 1
@@ -745,23 +742,140 @@ Is Accept: 1
 
 
 
-output (after powerset construction)
+
+
+Output (after powerset construction)
 Node Num: 0:
 Is Accept: 1
 'a' transitions to node #1
+'b' transitions to node #2
 
 Node Num: 1:
 Is Accept: 1
-'a' transitions to node #2
+'a' transitions to node #3
+'b' transitions to node #4
 
 Node Num: 2:
 Is Accept: 1
-'a' transitions to node #3
+'b' transitions to node #5
+'a' transitions to node #6
 
 Node Num: 3:
 Is Accept: 1
-'a' transitions to node #4
+'a' transitions to node #3
+'b' transitions to node #7
 
 Node Num: 4:
 Is Accept: 1
-'a' transitions to node #4
+'b' transitions to node #8
+'a' transitions to node #9
+
+Node Num: 5:
+Is Accept: 1
+'b' transitions to node #10
+'a' transitions to node #11
+
+Node Num: 6:
+Is Accept: 1
+'a' transitions to node #12
+'b' transitions to node #13
+
+Node Num: 7:
+Is Accept: 1
+'a' transitions to node #9
+'b' transitions to node #14
+
+Node Num: 8:
+Is Accept: 1
+'b' transitions to node #8
+'a' transitions to node #15
+
+Node Num: 9:
+Is Accept: 1
+'a' transitions to node #9
+'b' transitions to node #7
+
+Node Num: 10:
+Is Accept: 1
+'b' transitions to node #10
+'a' transitions to node #11
+
+Node Num: 11:
+Is Accept: 1
+'a' transitions to node #16
+'b' transitions to node #17
+
+Node Num: 12:
+Is Accept: 1
+'a' transitions to node #12
+'b' transitions to node #18
+
+Node Num: 13:
+Is Accept: 1
+'a' transitions to node #19
+'b' transitions to node #20
+
+Node Num: 14:
+Is Accept: 1
+'a' transitions to node #15
+'b' transitions to node #14
+
+Node Num: 15:
+Is Accept: 1
+'a' transitions to node #9
+'b' transitions to node #21
+
+Node Num: 16:
+Is Accept: 1
+'a' transitions to node #16
+'b' transitions to node #22
+
+Node Num: 17:
+Is Accept: 1
+'a' transitions to node #23
+'b' transitions to node #24
+
+Node Num: 18:
+Is Accept: 1
+'a' transitions to node #12
+'b' transitions to node #20
+
+Node Num: 19:
+Is Accept: 1
+'a' transitions to node #12
+'b' transitions to node #13
+
+Node Num: 20:
+Is Accept: 1
+'a' transitions to node #6
+'b' transitions to node #20
+
+Node Num: 21:
+Is Accept: 1
+'a' transitions to node #25
+'b' transitions to node #14
+
+Node Num: 22:
+Is Accept: 1
+'a' transitions to node #26
+'b' transitions to node #24
+
+Node Num: 23:
+Is Accept: 1
+'a' transitions to node #16
+'b' transitions to node #17
+
+Node Num: 24:
+Is Accept: 1
+'a' transitions to node #11
+'b' transitions to node #24
+
+Node Num: 25:
+Is Accept: 1
+'a' transitions to node #9
+'b' transitions to node #21
+
+Node Num: 26:
+Is Accept: 1
+'a' transitions to node #16
+'b' transitions to node #22
