@@ -1,0 +1,36 @@
+Current RegEx: "", result: Invalid RegEx.
+Current RegEx: "a+((a + b)|d", result: Invalid RegEx.
+Current RegEx: "(a+a", result: Invalid RegEx.
+Current RegEx: "()+a", result: Invalid RegEx.
+Current RegEx: "(|a", result: Invalid RegEx.
+Current RegEx: "(+a", result: Invalid RegEx.
+Current RegEx: "(*+a", result: Invalid RegEx.
+Current RegEx: "(", result: Invalid RegEx.
+Current RegEx: ")", result: Invalid RegEx.
+Current RegEx: "(a)(a)", result: Invalid RegEx.
+Current RegEx: "(a)\+", result: Invalid RegEx.
+Current RegEx: "(a)a", result: Invalid RegEx.
+Current RegEx: "+a", result: Invalid RegEx.
+Current RegEx: "(a+)", result: Invalid RegEx.
+Current RegEx: "a++a", result: Invalid RegEx.
+Current RegEx: "a+|a", result: Invalid RegEx.
+Current RegEx: "a+*", result: Invalid RegEx.
+Current RegEx: "a+", result: Invalid RegEx.
+Current RegEx: "|a", result: Invalid RegEx.
+Current RegEx: "(a|)", result: Invalid RegEx.
+Current RegEx: "a|+a", result: Invalid RegEx.
+Current RegEx: "a||a", result: Invalid RegEx.
+Current RegEx: "a|*", result: Invalid RegEx.
+Current RegEx: "a|", result: Invalid RegEx.
+Current RegEx: "*+a", result: Invalid RegEx.
+Current RegEx: "a*(a)", result: Invalid RegEx.
+Current RegEx: "a*\+", result: Invalid RegEx.
+Current RegEx: "a*a", result: Invalid RegEx.
+Current RegEx: "\a", result: Invalid RegEx.
+Current RegEx: "\ . ", result: Invalid RegEx.
+Current RegEx: "\+(a)", result: Invalid RegEx.
+Current RegEx: "\|\(", result: Invalid RegEx.
+Current RegEx: "\)a", result: Invalid RegEx.
+Current RegEx: "a(a)", result: Invalid RegEx.
+Current RegEx: "a\*", result: Invalid RegEx.
+Current RegEx: "ab", result: Invalid RegEx.
