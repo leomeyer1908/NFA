@@ -93,6 +93,7 @@ void printNFA(NFA* nfa) {
 void destroyNFANode(NFANode* nfaNode) {
 	for (DoublyNode* node = nfaNode->transitions->keyValuePairs.head; node != NULL; node = node->next) {
 		LinkedList* transitionList = (LinkedList*) ((KeyValuePair*) node->value)->value;
+		destroyList(transitionList);
 		free(transitionList);
 	}
 	destroyHashMap(nfaNode->transitions);
@@ -104,4 +105,5 @@ void destroyNFA(NFA* nfa) {
 		destroyNFANode(nfa->NFANodes[i]);
 		free(nfa->NFANodes[i]);
 	}
+	free(nfa->NFANodes);
 }
