@@ -1,33 +1,4 @@
-runAll: runAllRegexCombinationsNoStarTest runAllRegexCombinationsWithParenthesisTest runAllRegexCombinationsWithStarTest runInvalidRegexsTest runNestedParenthesesTest runSameTransitionCharTest runSimpleTest runSpecialCharsTest runTwoCharsTest
-
-runAllRegexCombinationsNoStarTest: buildAllRegexCombinationsNoStarTest
-	./allRegexCombinationsNoStarTest
-
-runAllRegexCombinationsWithParenthesisTest: buildAllRegexCombinationsWithParenthesisTest
-	./allRegexCombinationsWithParenthesisTest
-
-runAllRegexCombinationsWithStarTest: buildAllRegexCombinationsWithStarTest
-	./allRegexCombinationsWithStarTest
-
-runInvalidRegexsTest: buildInvalidRegexsTest
-	./invalidRegexsTest
-
-runNestedParenthesesTest: buildNestedParenthesesTest
-	./nestedParenthesesTest
-
-runSameTransitionCharTest: buildSameTransitionCharTest
-	./sameTransitionCharTest
-
-runSimpleTest: buildSimpleTest
-	./simpleTest
-
-runSpecialCharsTest: buildSpecialCharsTest
-	./specialCharsTest
-
-runTwoCharsTest: buildTwoCharsTest
-	./twoCharsTest
-
-buildAll: buildAllRegexCombinationsNoStarTest buildAllRegexCombinationsWithParenthesisTest buildAllRegexCombinationsWithStarTest buildInvalidRegexsTest buildNestedParenthesesTest buildSameTransitionCharTest buildSimpleTest buildSpecialCharsTest buildTwoCharsTest
+all: buildAllRegexCombinationsNoStarTest buildAllRegexCombinationsWithParenthesisTest buildAllRegexCombinationsWithStarTest buildInvalidRegexsTest buildNestedParenthesesTest buildSameTransitionCharTest buildSimpleTest buildSpecialCharsTest buildTwoCharsTest
 
 buildAllRegexCombinationsNoStarTest:
 	gcc -g -Wall tests/allRegexCombinationsNoStar.c NFA.c regexToNFA.c eliminateEpisilonNFA.c nfaToDFA.c DataStructures/HashMap.c DataStructures/HashSet.c DataStructures/LinkedList.c DataStructures/Node.c DataStructures/DoublyNode.c DataStructures/Stack.c -o allRegexCombinationsNoStarTest
