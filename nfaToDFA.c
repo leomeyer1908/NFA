@@ -77,9 +77,6 @@ void createDFAFromNFA(const NFA* nfa, NFA* dfa) {
     insertHashMap(&nfaToDFANodes, (void*) startNodeCombination, (void*) newStartNFANode);
     pushBackList(&newNodeCombinations, (void*) startNodeCombination);
     
-    HashSet uniqueTransitionChars;
-    initHashSet(&uniqueTransitionChars, 2, NULL, NULL);
-
 
     for (DoublyNode* node = newNodeCombinations.head; node != NULL; node = node->next) {
         NFANodeCombination* currentNodeCombination = (NFANodeCombination*) node->value;
