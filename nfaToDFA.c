@@ -128,6 +128,7 @@ void createDFAFromNFA(const NFA* nfa, NFA* dfa) {
                 pushBackList(&newNodeCombinations, (void*) currentNFANodeCombination);
             } else {
                 destinationDFANode = (NFANode*) getHashMap(&nfaToDFANodes, (void*) currentNFANodeCombination);
+                destroyNFANodeCombination(currentNFANodeCombination);
                 free(currentNFANodeCombination);
             }
 
