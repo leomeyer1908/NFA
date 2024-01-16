@@ -133,6 +133,8 @@ void createDFAFromNFA(const NFA* nfa, NFA* dfa) {
 
             addTransitionNFANode(correspondingDFANode, currentTransitionChar, (void*) destinationDFANode);
         }
+
+        destroyHashMap(&transitionsHashMap);
     }
 
     dfa->nodeNum = newNodeCombinations.size;
@@ -144,9 +146,12 @@ void createDFAFromNFA(const NFA* nfa, NFA* dfa) {
     }
     dfa->startState = dfa->NFANodes[0];
 
+    destroyHashMap(&nfaToDFANodes);
+
     for (DoublyNode* node = newNodeCombinations.head; node != NULL; node = node->next) {
         NFANodeCombination* currentNodeCombination = (NFANodeCombination*) node->value;
         destroyNFANodeCombination(currentNodeCombination);
         free(currentNodeCombination);
     }
+    destroyList(&newNodeCombinations);
 }

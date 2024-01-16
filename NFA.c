@@ -63,6 +63,8 @@ void removeUnreachableNFANodes(NFA* nfa) {
 	nfa->NFANodes = newNFANodes;
 	nfa->nodeNum = newNodeNum;
 
+	destroyHashSet(&visitedNodes);
+
 }
 
 void printNFA(NFA* nfa) {
