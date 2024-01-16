@@ -132,8 +132,9 @@ void createDFAFromNFA(const NFA* nfa, NFA* dfa) {
             }
 
             addTransitionNFANode(correspondingDFANode, currentTransitionChar, (void*) destinationDFANode);
+            destroyHashSet(transitionSet);
+            free(transitionSet);
         }
-
         destroyHashMap(&transitionsHashMap);
     }
 
